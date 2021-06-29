@@ -1,9 +1,7 @@
-import time
 import unittest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-import data
 from pages.mainPage import MainPage
 from pages.interactionsPage import InteractionsPage
 from pages.droppablePage import DroppablePage
@@ -33,7 +31,6 @@ class DragAndDrop(unittest.TestCase):
         interactionsPage.click_on_droppable()
         droppablePage = DroppablePage(self.driver)
         droppablePage.drag_drop()
-        time.sleep(2)
 
     def tearDown(self):
         self.driver.close()

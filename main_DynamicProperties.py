@@ -2,6 +2,8 @@ import unittest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
+
+import data
 from pages.mainPage import MainPage
 from pages.elementsPage import ElementsPage
 from pages.dynamicPropertiesPage import  DynamicPropertiesPage
@@ -30,7 +32,7 @@ class DynamicProperties(unittest.TestCase):
         elementsPage = ElementsPage(self.driver)
         elementsPage.click_on_dynamic_properties()
         dynamicPropertiesP = DynamicPropertiesPage(self.driver)
-        dynamicPropertiesP.assert_random_text()
+        self.assertEqual(dynamicPropertiesP.get_random_text(),data.DynamicPropertiesData.randomTextId)
         dynamicPropertiesP.enable_button_false()
         dynamicPropertiesP.visible_after_exception()
         dynamicPropertiesP.enable_button_true()

@@ -8,10 +8,12 @@ import data
 
 class DynamicPropertiesPage(BasePageStart.BasePage):
 
-    def assert_random_text(self):
+    def get_random_text(self):
 
-        randomText = self.driver.find_element(*DynamicPropertiesLocators.RANDOM_TEXT_ID)
-        assert randomText.text == data.DynamicPropertiesData.randomTextId
+        return self.driver.find_element(*DynamicPropertiesLocators.RANDOM_TEXT_ID).text
+
+
+
 
     def visible_after_exception(self):
 
