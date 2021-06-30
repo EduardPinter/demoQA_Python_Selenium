@@ -2,7 +2,6 @@ import unittest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-
 import data
 from pages.mainPage import MainPage
 from pages.elementsPage import ElementsPage
@@ -33,11 +32,11 @@ class DynamicProperties(unittest.TestCase):
         elementsPage.click_on_dynamic_properties()
         dynamicPropertiesP = DynamicPropertiesPage(self.driver)
         self.assertEqual(dynamicPropertiesP.get_random_text(),data.DynamicPropertiesData.randomTextId)
-        dynamicPropertiesP.enable_button_false()
+        self.assertEqual(dynamicPropertiesP.get_enable_button_false(), False)
         dynamicPropertiesP.visible_after_exception()
-        dynamicPropertiesP.enable_button_true()
-        dynamicPropertiesP.color_assert()
-        dynamicPropertiesP.visible_after()
+        self.assertEqual(dynamicPropertiesP.get_enable_button_true(), True)
+        self.assertEqual(dynamicPropertiesP.get_color_assert(), data.DynamicPropertiesData.colorAsserting)
+        self.assertEqual(dynamicPropertiesP.visible_after(), True)
 
     def tearDown(self):
         self.driver.close()

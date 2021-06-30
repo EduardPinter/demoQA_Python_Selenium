@@ -12,9 +12,6 @@ class DynamicPropertiesPage(BasePageStart.BasePage):
 
         return self.driver.find_element(*DynamicPropertiesLocators.RANDOM_TEXT_ID).text
 
-
-
-
     def visible_after_exception(self):
 
         try:
@@ -24,29 +21,20 @@ class DynamicPropertiesPage(BasePageStart.BasePage):
         except NoSuchElementException:
             pass
 
-    def enable_button_false(self):
+    def get_enable_button_false(self):
 
-        element = self.driver.find_element(*DynamicPropertiesLocators.ENABLE_BUTTON)
-        elementIsEnabled = element.is_enabled()
-        assert elementIsEnabled == False, f'Expected False, got {elementIsEnabled=}'
+        return self.driver.find_element(*DynamicPropertiesLocators.ENABLE_BUTTON).is_enabled()
 
-    def enable_button_true(self):
+    def get_enable_button_true(self):
 
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(DynamicPropertiesLocators.ENABLE_BUTTON))
-        element = self.driver.find_element(*DynamicPropertiesLocators.ENABLE_BUTTON)
-        elementIsEnabled = element.is_enabled()
-        assert elementIsEnabled == True, f'Expected True, got {elementIsEnabled=}'
+        return self.driver.find_element(*DynamicPropertiesLocators.ENABLE_BUTTON).is_enabled()
 
-    def color_assert(self):
+    def get_color_assert(self):
 
-        color = self.driver.find_element(*DynamicPropertiesLocators.COLOR_CHANGE)
-        colorValue = color.value_of_css_property('color')
-        supposedColor = data.DynamicPropertiesData.colorAsserting
-        assert colorValue == supposedColor, f'Expected {supposedColor=}, Actual {colorValue=}'
+        return self.driver.find_element(*DynamicPropertiesLocators.COLOR_CHANGE).value_of_css_property('color')
 
     def visible_after(self):
 
         WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(DynamicPropertiesLocators.VISIBLE_AFTER))
-        visibleAfter = self.driver.find_element(*DynamicPropertiesLocators.VISIBLE_AFTER)
-        visibleAfterDisplayed = visibleAfter.is_displayed()
-        assert visibleAfterDisplayed == True, f'Expected True(element to be visible, actual result {visibleAfterDisplayed=}'
+        return self.driver.find_element(*DynamicPropertiesLocators.VISIBLE_AFTER).is_displayed()

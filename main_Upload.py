@@ -25,7 +25,7 @@ class HoverElements(unittest.TestCase):
         self.driver.implicitly_wait(5)
         self.driver.maximize_window()
 
-    def test_hover_elements(self):
+    def test_upload(self):
         mainPage = MainPage(self.driver)
         mainPage.click_on_elements()
         elementsPage = ElementsPage(self.driver)
